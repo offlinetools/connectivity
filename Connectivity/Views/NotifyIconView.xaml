@@ -1,0 +1,43 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                xmlns:local="clr-namespace:OfflineTools.Connectivity"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:tb="clr-namespace:Hardcodet.Wpf.TaskbarNotification;assembly=Hardcodet.Wpf.TaskbarNotification"  >
+   
+    <tb:TaskbarIcon x:Key="NotifyIcon"
+                    
+                     
+                    ToolTipText="Double-click for window, right-click for menu"
+DoubleClickCommand="{Binding ShowWindowCommand}">
+        <tb:TaskbarIcon.Style>
+
+            <Style TargetType="{x:Type tb:TaskbarIcon }">
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding ConMon.Status}" Value="{x:Static local:ConnectivityValues.Disconnected}">
+                        <Setter Property="IconSource"  Value="/Connectivity;component/Resources/cross triangle.ico"/>
+
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding ConMon.Status}" Value="{x:Static local:ConnectivityValues.Connected}">
+                        <Setter Property="IconSource"   Value="/Connectivity;component/Resources/tick triangle.ico"/>
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding ConMon.Status}" Value="{x:Static local:ConnectivityValues.Unknown}">
+                        <Setter Property="IconSource"  Value="/Connectivity;component/Resources/main.ico"/>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+        </tb:TaskbarIcon.Style>
+        <tb:TaskbarIcon.ContextMenu>
+            <ContextMenu  ItemsSource="{Binding MenuItems}" >
+                <ContextMenu.ItemContainerStyle>
+                    <Style TargetType="MenuItem">
+                        <Setter Property="Command" Value="{Binding Command}" />
+                        <Setter Property="CommandParameter" Value="{Binding CommandParameter}" />
+                        <Setter Property="Header" Value="{Binding Text}" />
+                        <Setter Property="IsEnabled"   Value="{Binding IsEnabled}" />
+                        <Setter Property="IsChecked"  Value="{Binding IsSelected }" />
+                        <Setter Property="ItemsSource" Value="{Binding Children}"/>
+                    </Style>
+                </ContextMenu.ItemContainerStyle>
+            </ContextMenu>
+        </tb:TaskbarIcon.ContextMenu>
+    </tb:TaskbarIcon>
+</ResourceDictionary>

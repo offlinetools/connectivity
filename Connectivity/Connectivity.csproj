@@ -185,10 +185,16 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\MinimizeToTrayImage.png" />
+    <Resource Include="Resources\main.ico" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\main.ico" />
+    <Resource Include="Resources\Minimize.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tick triangle.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\cross triangle.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

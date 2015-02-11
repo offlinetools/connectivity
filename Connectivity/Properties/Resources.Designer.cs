@@ -71,6 +71,16 @@ namespace OfflineTools.Connectivity.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon cross_triangle {
+            get {
+                object obj = ResourceManager.GetObject("cross_triangle", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
         /// </summary>
         internal static System.IO.UnmanagedMemoryStream HeartbeatOff {
@@ -99,12 +109,12 @@ namespace OfflineTools.Connectivity.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         /// </summary>
-        internal static System.Drawing.Bitmap MinimizeToTrayImage {
+        internal static System.Drawing.Icon Minimize {
             get {
-                object obj = ResourceManager.GetObject("MinimizeToTrayImage", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
+                object obj = ResourceManager.GetObject("Minimize", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
             }
         }
         
@@ -114,6 +124,16 @@ namespace OfflineTools.Connectivity.Properties {
         internal static System.Drawing.Icon tick_border {
             get {
                 object obj = ResourceManager.GetObject("tick_border", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon tick_triangle {
+            get {
+                object obj = ResourceManager.GetObject("tick_triangle", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
             }
         }

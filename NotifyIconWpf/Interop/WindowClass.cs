@@ -9,7 +9,6 @@ namespace Hardcodet.Wpf.TaskbarNotification.Interop
     /// </summary>
     public delegate IntPtr WindowProcedureHandler(IntPtr hwnd, uint uMsg, IntPtr wparam, IntPtr lparam);
 
-
     /// <summary>
     /// Win API WNDCLASS struct - represents a single window.
     /// Used to receive window messages.
@@ -17,7 +16,7 @@ namespace Hardcodet.Wpf.TaskbarNotification.Interop
     [StructLayout(LayoutKind.Sequential)]
     public struct WindowClass
     {
-        #pragma warning disable 1591
+#pragma warning disable 1591
 
         public uint style;
         public WindowProcedureHandler lpfnWndProc;
@@ -27,9 +26,13 @@ namespace Hardcodet.Wpf.TaskbarNotification.Interop
         public IntPtr hIcon;
         public IntPtr hCursor;
         public IntPtr hbrBackground;
-        [MarshalAs(UnmanagedType.LPWStr)] public string lpszMenuName;
-        [MarshalAs(UnmanagedType.LPWStr)] public string lpszClassName;
 
-        #pragma warning restore 1591
+        [MarshalAs(UnmanagedType.LPWStr)]
+        public string lpszMenuName;
+
+        [MarshalAs(UnmanagedType.LPWStr)]
+        public string lpszClassName;
+
+#pragma warning restore 1591
     }
 }

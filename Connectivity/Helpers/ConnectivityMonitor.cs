@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -10,42 +7,75 @@ namespace OfflineTools.Connectivity.Helpers
 {
     public class ConnectivityMonitor : IDisposable, INotifyPropertyChanged
     {
-
         public Action Heartbeat;
         public Action StatusChange;
 
-
-        void UpdateTimer()
+        private void UpdateTimer()
         {
             if (null != timer)
                 timer.Change(Interval, Timeout.Infinite);
-
         }
 
         private Timer timer;
-        public ConnectivityMonitor()
+
+        public void StopTesting()
+        {
+            keepAlive = false;
+        }
+
+        public void ResumeTesting()
         {
             keepAlive = true;
-
-            timer = new Timer(timer_Elapsed, null, Timeout.Infinite, Timeout.Infinite);
-            Interval = 3000;
-
             Test();
+        }
 
+        public bool HeartbeatEnabled { get; set; }
+
+        public bool TestsEnabled
+        {
+            get { return testsEnabled; }
+            set
+            {
+                if (testsEnabled != value)
+                {
+                    testsEnabled = value;
+                    if (!testsEnabled)
+                    {
+                        StopTesting();
+                        Status = ConnectivityValues.Disabled;
+                    }
+                    else
+                        ResumeTesting();
+
+                    NotifyPropertyChanged("Enabled");
+                }
+            }
+        }
+
+        private bool testsEnabled;
+
+        public ConnectivityMonitor()
+        {
+            HeartbeatEnabled = true;
+            timer = new Timer(timer_Elapsed, null, Timeout.Infinite, Timeout.Infinite);
+            TestsEnabled = true;
+            Interval = 60000;
+            Test();
         }
 
         public ConnectivityValues Status { get; set; }
-        void timer_Elapsed(object state)
+
+        private void timer_Elapsed(object state)
         {
-            if (null != Heartbeat)
+            if ((null != Heartbeat) && TestsEnabled && HeartbeatEnabled)
                 Heartbeat.DynamicInvoke();
             UpdateTimer();
         }
 
-        bool firstGo = true;
-
+        private bool firstGo = true;
         private int interval;
         private bool keepAlive;
+
         private void NotifyPropertyChanged(String info)
         {
             if (PropertyChanged != null)
@@ -53,60 +83,44 @@ namespace OfflineTools.Connectivity.Helpers
                 PropertyChanged(this, new PropertyChangedEventArgs(info));
             }
         }
+
         public int Interval
         {
             get { return interval; }
             set
             {
-
                 if (interval != value)
                 {
-
                     interval = value;
                     UpdateTimer();
                     NotifyPropertyChanged("Interval");
                 }
-
             }
         }
 
         public async void Test()
         {
-
             await Task.Run(() =>
             {
                 ConnectivityValues lastStatus;
                 while (keepAlive)
                 {
-
                     lastStatus = Status;
-                    Status = ConnectivityHelper.TestConn();
+                    Status = ConnectivityHelper.Test();
                     NotifyPropertyChanged("Status");
-
                     if (firstGo)
                     {
                         firstGo = false;
                         continue;
-
                     }
                     if (null != StatusChange && lastStatus != Status)
                     {
-
                         StatusChange();
-
-
-
                     }
-
-
-
                 }
-
-
-
             });
-
         }
+
         #region dispose
 
         public void Dispose()
@@ -124,9 +138,7 @@ namespace OfflineTools.Connectivity.Helpers
                 {
                     timer.Change(Timeout.Infinite, Timeout.Infinite);
                     timer.Dispose();
-
                 }
-
             }
         }
 

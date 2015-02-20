@@ -12,6 +12,7 @@ namespace Hardcodet.Wpf.TaskbarNotification.Interop
         /// X coordinate.
         /// </summary>
         public int X;
+
         /// <summary>
         /// Y coordinate.
         /// </summary>

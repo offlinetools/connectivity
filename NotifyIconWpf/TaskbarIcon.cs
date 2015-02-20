@@ -6,10 +6,10 @@
 // modify it under the terms of the Code Project Open License (CPOL);
 // either version 1.0 of the License, or (at your option) any later
 // version.
-// 
+//
 // The above copyright notice and this permission notice shall be
 // included in all copies or substantial portions of the Software.
-// 
+//
 // THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
 // EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
 // OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
@@ -21,7 +21,7 @@
 //
 // THIS COPYRIGHT NOTICE MAY NOT BE REMOVED FROM THIS FILE
 
-
+using Hardcodet.Wpf.TaskbarNotification.Interop;
 using System;
 using System.Diagnostics;
 using System.Drawing;
@@ -31,9 +31,7 @@ using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Interop;
 using System.Windows.Threading;
-using Hardcodet.Wpf.TaskbarNotification.Interop;
 using Point = Hardcodet.Wpf.TaskbarNotification.Interop.Point;
-
 
 namespace Hardcodet.Wpf.TaskbarNotification
 {
@@ -87,7 +85,6 @@ namespace Hardcodet.Wpf.TaskbarNotification
             get { return messageSink.Version == NotifyIconVersion.Vista; }
         }
 
-
         /// <summary>
         /// Checks whether a non-tooltip popup is currently opened.
         /// </summary>
@@ -107,7 +104,7 @@ namespace Hardcodet.Wpf.TaskbarNotification
 
         private double scalingFactor = double.NaN;
 
-        #endregion
+        #endregion Members
 
         #region Construction
 
@@ -142,7 +139,7 @@ namespace Hardcodet.Wpf.TaskbarNotification
             if (Application.Current != null) Application.Current.Exit += OnExit;
         }
 
-        #endregion
+        #endregion Construction
 
         #region Custom Balloons
 
@@ -244,7 +241,6 @@ namespace Hardcodet.Wpf.TaskbarNotification
             }
         }
 
-
         /// <summary>
         /// Resets the closing timeout, which effectively
         /// keeps a displayed balloon message open until
@@ -262,7 +258,6 @@ namespace Hardcodet.Wpf.TaskbarNotification
                 balloonCloseTimer.Change(Timeout.Infinite, Timeout.Infinite);
             }
         }
-
 
         /// <summary>
         /// Closes the current <see cref="CustomBalloon"/>, if the
@@ -315,7 +310,6 @@ namespace Hardcodet.Wpf.TaskbarNotification
             }
         }
 
-
         /// <summary>
         /// Timer-invoke event which closes the currently open balloon and
         /// resets the <see cref="CustomBalloon"/> dependency property.
@@ -329,7 +323,7 @@ namespace Hardcodet.Wpf.TaskbarNotification
             this.GetDispatcher().Invoke(action);
         }
 
-        #endregion
+        #endregion Custom Balloons
 
         #region Process Incoming Mouse Events
 
@@ -350,37 +344,45 @@ namespace Hardcodet.Wpf.TaskbarNotification
                     RaiseTrayMouseMoveEvent();
                     //immediately return - there's nothing left to evaluate
                     return;
+
                 case MouseEvent.IconRightMouseDown:
                     RaiseTrayRightMouseDownEvent();
                     break;
+
                 case MouseEvent.IconLeftMouseDown:
                     RaiseTrayLeftMouseDownEvent();
                     break;
+
                 case MouseEvent.IconRightMouseUp:
                     RaiseTrayRightMouseUpEvent();
                     break;
+
                 case MouseEvent.IconLeftMouseUp:
                     RaiseTrayLeftMouseUpEvent();
                     break;
+
                 case MouseEvent.IconMiddleMouseDown:
                     RaiseTrayMiddleMouseDownEvent();
                     break;
+
                 case MouseEvent.IconMiddleMouseUp:
                     RaiseTrayMiddleMouseUpEvent();
                     break;
+
                 case MouseEvent.IconDoubleClick:
                     //cancel single click timer
                     singleClickTimer.Change(Timeout.Infinite, Timeout.Infinite);
                     //bubble event
                     RaiseTrayMouseDoubleClickEvent();
                     break;
+
                 case MouseEvent.BalloonToolTipClicked:
                     RaiseTrayBalloonTipClickedEvent();
                     break;
+
                 default:
                     throw new ArgumentOutOfRangeException("me", "Missing handler for mouse event flag: " + me);
             }
-
 
             //get mouse coordinates
             Point cursorPosition = new Point();
@@ -419,7 +421,6 @@ namespace Hardcodet.Wpf.TaskbarNotification
                 }
             }
 
-
             //show context menu, if requested
             if (me.IsMatch(MenuActivation))
             {
@@ -454,7 +455,7 @@ namespace Hardcodet.Wpf.TaskbarNotification
             }
         }
 
-        #endregion
+        #endregion Process Incoming Mouse Events
 
         #region ToolTips
 
@@ -502,7 +503,6 @@ namespace Hardcodet.Wpf.TaskbarNotification
             }
         }
 
-
         /// <summary>
         /// Creates a <see cref="ToolTip"/> control that either
         /// wraps the currently set <see cref="TrayToolTip"/>
@@ -537,7 +537,7 @@ namespace Hardcodet.Wpf.TaskbarNotification
                 tt.BorderThickness = new Thickness(0);
                 tt.Background = System.Windows.Media.Brushes.Transparent;
 
-                //setting the 
+                //setting the
                 tt.StaysOpen = true;
                 tt.Content = TrayToolTip;
             }
@@ -558,7 +558,6 @@ namespace Hardcodet.Wpf.TaskbarNotification
             //store a reference to the used tooltip
             SetTrayToolTipResolved(tt);
         }
-
 
         /// <summary>
         /// Sets tooltip settings for the class depending on defined
@@ -585,7 +584,7 @@ namespace Hardcodet.Wpf.TaskbarNotification
             Util.WriteIconData(ref iconData, NotifyCommand.Modify, flags);
         }
 
-        #endregion
+        #endregion ToolTips
 
         #region Custom Popup
 
@@ -642,7 +641,6 @@ namespace Hardcodet.Wpf.TaskbarNotification
             SetTrayPopupResolved(popup);
         }
 
-
         /// <summary>
         /// Displays the <see cref="TrayPopup"/> control if
         /// it was set.
@@ -690,7 +688,7 @@ namespace Hardcodet.Wpf.TaskbarNotification
             }
         }
 
-        #endregion
+        #endregion Custom Popup
 
         #region Context Menu
 
@@ -750,7 +748,7 @@ namespace Hardcodet.Wpf.TaskbarNotification
             }
         }
 
-        #endregion
+        #endregion Context Menu
 
         #region Balloon Tips
 
@@ -787,7 +785,6 @@ namespace Hardcodet.Wpf.TaskbarNotification
             }
         }
 
-
         /// <summary>
         /// Displays a balloon tip with the specified title,
         /// text, and a custom icon in the taskbar for the specified time period.
@@ -806,7 +803,6 @@ namespace Hardcodet.Wpf.TaskbarNotification
                 ShowBalloonTip(title, message, BalloonFlags.User, customIcon.Handle);
             }
         }
-
 
         /// <summary>
         /// Invokes <see cref="WinApi.Shell_NotifyIcon"/> in order to display
@@ -829,7 +825,6 @@ namespace Hardcodet.Wpf.TaskbarNotification
             Util.WriteIconData(ref iconData, NotifyCommand.Modify, IconDataMembers.Info | IconDataMembers.Icon);
         }
 
-
         /// <summary>
         /// Hides a balloon ToolTip, if any is displayed.
         /// </summary>
@@ -842,7 +837,7 @@ namespace Hardcodet.Wpf.TaskbarNotification
             Util.WriteIconData(ref iconData, NotifyCommand.Modify, IconDataMembers.Info);
         }
 
-        #endregion
+        #endregion Balloon Tips
 
         #region Single Click Timer event
 
@@ -867,7 +862,7 @@ namespace Hardcodet.Wpf.TaskbarNotification
             }
         }
 
-        #endregion
+        #endregion Single Click Timer event
 
         #region Set Version (API)
 
@@ -897,7 +892,7 @@ namespace Hardcodet.Wpf.TaskbarNotification
             }
         }
 
-        #endregion
+        #endregion Set Version (API)
 
         #region Create / Remove Taskbar Icon
 
@@ -910,7 +905,6 @@ namespace Hardcodet.Wpf.TaskbarNotification
             IsTaskbarIconCreated = false;
             CreateTaskbarIcon();
         }
-
 
         /// <summary>
         /// Creates the taskbar icon. This message is invoked during initialization,
@@ -963,7 +957,7 @@ namespace Hardcodet.Wpf.TaskbarNotification
             }
         }
 
-        #endregion
+        #endregion Create / Remove Taskbar Icon
 
         /// <summary>
         /// Recalculates OS coordinates in order to support WPFs coordinate
@@ -1001,7 +995,6 @@ namespace Hardcodet.Wpf.TaskbarNotification
         /// </summary>
         public bool IsDisposed { get; private set; }
 
-
         /// <summary>
         /// Checks if the object has been disposed and
         /// raises a <see cref="ObjectDisposedException"/> in case
@@ -1012,7 +1005,6 @@ namespace Hardcodet.Wpf.TaskbarNotification
             if (IsDisposed) throw new ObjectDisposedException(Name ?? GetType().FullName);
         }
 
-
         /// <summary>
         /// Disposes the class if the application exits.
         /// </summary>
@@ -1020,7 +1012,6 @@ namespace Hardcodet.Wpf.TaskbarNotification
         {
             Dispose();
         }
-
 
         /// <summary>
         /// This destructor will run only if the <see cref="Dispose()"/>
@@ -1036,7 +1027,6 @@ namespace Hardcodet.Wpf.TaskbarNotification
             Dispose(false);
         }
 
-
         /// <summary>
         /// Disposes the object.
         /// </summary>
@@ -1049,12 +1039,11 @@ namespace Hardcodet.Wpf.TaskbarNotification
 
             // This object will be cleaned up by the Dispose method.
             // Therefore, you should call GC.SupressFinalize to
-            // take this object off the finalization queue 
+            // take this object off the finalization queue
             // and prevent finalization code for this object
             // from executing a second time.
             GC.SuppressFinalize(this);
         }
-
 
         /// <summary>
         /// Closes the tray and releases all resources.
@@ -1098,6 +1087,6 @@ namespace Hardcodet.Wpf.TaskbarNotification
             }
         }
 
-        #endregion
+        #endregion Dispose / Exit
     }
 }

@@ -6,10 +6,10 @@
 // modify it under the terms of the Code Project Open License (CPOL);
 // either version 1.0 of the License, or (at your option) any later
 // version.
-// 
+//
 // The above copyright notice and this permission notice shall be
 // included in all copies or substantial portions of the Software.
-// 
+//
 // THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
 // EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
 // OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
@@ -21,7 +21,7 @@
 //
 // THIS COPYRIGHT NOTICE MAY NOT BE REMOVED FROM THIS FILE
 
-
+using Hardcodet.Wpf.TaskbarNotification.Interop;
 using System;
 using System.ComponentModel;
 using System.Drawing;
@@ -30,7 +30,6 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Resources;
 using System.Windows.Threading;
-using Hardcodet.Wpf.TaskbarNotification.Interop;
 
 namespace Hardcodet.Wpf.TaskbarNotification
 {
@@ -53,7 +52,7 @@ namespace Hardcodet.Wpf.TaskbarNotification
             get { return isDesignMode; }
         }
 
-        #endregion
+        #endregion IsDesignMode
 
         #region construction
 
@@ -62,11 +61,11 @@ namespace Hardcodet.Wpf.TaskbarNotification
             isDesignMode =
                 (bool)
                     DependencyPropertyDescriptor.FromProperty(DesignerProperties.IsInDesignModeProperty,
-                        typeof (FrameworkElement))
+                        typeof(FrameworkElement))
                         .Metadata.DefaultValue;
         }
 
-        #endregion
+        #endregion construction
 
         #region CreateHelperWindow
 
@@ -89,7 +88,7 @@ namespace Hardcodet.Wpf.TaskbarNotification
             };
         }
 
-        #endregion
+        #endregion CreateHelperWindow
 
         #region WriteIconData
 
@@ -105,7 +104,6 @@ namespace Hardcodet.Wpf.TaskbarNotification
         {
             return WriteIconData(ref data, command, data.ValidMembers);
         }
-
 
         /// <summary>
         /// Updates the taskbar icons with data provided by a given
@@ -129,7 +127,7 @@ namespace Hardcodet.Wpf.TaskbarNotification
             }
         }
 
-        #endregion
+        #endregion WriteIconData
 
         #region GetBalloonFlag
 
@@ -143,18 +141,22 @@ namespace Hardcodet.Wpf.TaskbarNotification
             {
                 case BalloonIcon.None:
                     return BalloonFlags.None;
+
                 case BalloonIcon.Info:
                     return BalloonFlags.Info;
+
                 case BalloonIcon.Warning:
                     return BalloonFlags.Warning;
+
                 case BalloonIcon.Error:
                     return BalloonFlags.Error;
+
                 default:
                     throw new ArgumentOutOfRangeException("icon");
             }
         }
 
-        #endregion
+        #endregion GetBalloonFlag
 
         #region ImageSource to Icon
 
@@ -182,7 +184,7 @@ namespace Hardcodet.Wpf.TaskbarNotification
             return new Icon(streamInfo.Stream);
         }
 
-        #endregion
+        #endregion ImageSource to Icon
 
         #region evaluate listings
 
@@ -212,7 +214,7 @@ namespace Hardcodet.Wpf.TaskbarNotification
             return false;
         }
 
-        #endregion
+        #endregion evaluate listings
 
         #region match MouseEvent to PopupActivation
 
@@ -226,25 +228,32 @@ namespace Hardcodet.Wpf.TaskbarNotification
             {
                 case PopupActivationMode.LeftClick:
                     return me == MouseEvent.IconLeftMouseUp;
+
                 case PopupActivationMode.RightClick:
                     return me == MouseEvent.IconRightMouseUp;
+
                 case PopupActivationMode.LeftOrRightClick:
                     return me.Is(MouseEvent.IconLeftMouseUp, MouseEvent.IconRightMouseUp);
+
                 case PopupActivationMode.LeftOrDoubleClick:
                     return me.Is(MouseEvent.IconLeftMouseUp, MouseEvent.IconDoubleClick);
+
                 case PopupActivationMode.DoubleClick:
                     return me.Is(MouseEvent.IconDoubleClick);
+
                 case PopupActivationMode.MiddleClick:
                     return me == MouseEvent.IconMiddleMouseUp;
+
                 case PopupActivationMode.All:
                     //return true for everything except mouse movements
                     return me != MouseEvent.MouseMove;
+
                 default:
                     throw new ArgumentOutOfRangeException("activationMode");
             }
         }
 
-        #endregion
+        #endregion match MouseEvent to PopupActivation
 
         #region execute command
 
@@ -272,7 +281,7 @@ namespace Hardcodet.Wpf.TaskbarNotification
             }
         }
 
-        #endregion
+        #endregion execute command
 
         /// <summary>
         /// Returns a dispatcher for multi-threaded scenarios
@@ -289,7 +298,6 @@ namespace Hardcodet.Wpf.TaskbarNotification
             //ultimatively use the thread's dispatcher
             return Dispatcher.CurrentDispatcher;
         }
-
 
         /// <summary>
         /// Checks whether the <see cref="FrameworkElement.DataContextProperty"/>

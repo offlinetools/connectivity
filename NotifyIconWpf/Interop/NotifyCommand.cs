@@ -28,7 +28,7 @@ namespace Hardcodet.Wpf.TaskbarNotification.Interop
 
         /// <summary>
         /// Shell32.dll version 5.0 and later only. Instructs the taskbar
-        /// to behave according to the version number specified in the 
+        /// to behave according to the version number specified in the
         /// uVersion member of the structure pointed to by lpdata.
         /// This message allows you to specify whether you want the version
         /// 5.0 behavior found on Microsoft Windows 2000 systems, or the

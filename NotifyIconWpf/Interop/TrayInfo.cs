@@ -4,7 +4,6 @@ using System;
 using System.Drawing;
 using System.Runtime.InteropServices;
 
-
 namespace Hardcodet.Wpf.TaskbarNotification.Interop
 {
     /// <summary>
@@ -45,10 +44,9 @@ namespace Hardcodet.Wpf.TaskbarNotification.Interop
                 y = rcWorkArea.Bottom;
             }
 
-            return new Point {X = x, Y = y};
+            return new Point { X = x, Y = y };
         }
     }
-
 
     internal class AppBarInfo
     {
@@ -61,7 +59,6 @@ namespace Hardcodet.Wpf.TaskbarNotification.Interop
         [DllImport("user32.dll")]
         private static extern Int32 SystemParametersInfo(UInt32 uiAction, UInt32 uiParam,
             IntPtr pvParam, UInt32 fWinIni);
-
 
         private const int ABE_BOTTOM = 3;
         private const int ABE_LEFT = 0;
@@ -77,9 +74,8 @@ namespace Hardcodet.Wpf.TaskbarNotification.Interop
 
         public ScreenEdge Edge
         {
-            get { return (ScreenEdge) m_data.uEdge; }
+            get { return (ScreenEdge)m_data.uEdge; }
         }
-
 
         public Rectangle WorkArea
         {
@@ -89,7 +85,7 @@ namespace Hardcodet.Wpf.TaskbarNotification.Interop
                 var rc = new RECT();
                 IntPtr rawRect = Marshal.AllocHGlobal(Marshal.SizeOf(rc));
                 bResult = SystemParametersInfo(SPI_GETWORKAREA, 0, rawRect, 0);
-                rc = (RECT) Marshal.PtrToStructure(rawRect, rc.GetType());
+                rc = (RECT)Marshal.PtrToStructure(rawRect, rc.GetType());
 
                 if (bResult == 1)
                 {
@@ -101,11 +97,10 @@ namespace Hardcodet.Wpf.TaskbarNotification.Interop
             }
         }
 
-
         public void GetPosition(string strClassName, string strWindowName)
         {
             m_data = new APPBARDATA();
-            m_data.cbSize = (UInt32) Marshal.SizeOf(m_data.GetType());
+            m_data.cbSize = (UInt32)Marshal.SizeOf(m_data.GetType());
 
             IntPtr hWnd = FindWindow(strClassName, strWindowName);
 
@@ -124,12 +119,10 @@ namespace Hardcodet.Wpf.TaskbarNotification.Interop
             }
         }
 
-
         public void GetSystemTaskBarPosition()
         {
             GetPosition("Shell_TrayWnd", null);
         }
-
 
         public enum ScreenEdge
         {
@@ -139,7 +132,6 @@ namespace Hardcodet.Wpf.TaskbarNotification.Interop
             Right = ABE_RIGHT,
             Bottom = ABE_BOTTOM
         }
-
 
         [StructLayout(LayoutKind.Sequential)]
         private struct APPBARDATA

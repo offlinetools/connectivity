@@ -6,10 +6,10 @@
 // modify it under the terms of the Code Project Open License (CPOL);
 // either version 1.0 of the License, or (at your option) any later
 // version.
-// 
+//
 // The above copyright notice and this permission notice shall be
 // included in all copies or substantial portions of the Software.
-// 
+//
 // THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
 // EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
 // OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
@@ -21,7 +21,7 @@
 //
 // THIS COPYRIGHT NOTICE MAY NOT BE REMOVED FROM THIS FILE
 
-
+using Hardcodet.Wpf.TaskbarNotification.Interop;
 using System;
 using System.ComponentModel;
 using System.Drawing;
@@ -30,7 +30,6 @@ using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 using System.Windows.Media;
-using Hardcodet.Wpf.TaskbarNotification.Interop;
 
 namespace Hardcodet.Wpf.TaskbarNotification
 {
@@ -45,7 +44,6 @@ namespace Hardcodet.Wpf.TaskbarNotification
         /// </summary>
         public const string CategoryName = "NotifyIcon";
 
-
         //POPUP CONTROLS
 
         #region TrayPopupResolved
@@ -54,9 +52,8 @@ namespace Hardcodet.Wpf.TaskbarNotification
         /// TrayPopupResolved Read-Only Dependency Property
         /// </summary>
         private static readonly DependencyPropertyKey TrayPopupResolvedPropertyKey
-            = DependencyProperty.RegisterReadOnly("TrayPopupResolved", typeof (Popup), typeof (TaskbarIcon),
+            = DependencyProperty.RegisterReadOnly("TrayPopupResolved", typeof(Popup), typeof(TaskbarIcon),
                 new FrameworkPropertyMetadata(null));
-
 
         /// <summary>
         /// A read-only dependency property that returns the <see cref="Popup"/>
@@ -75,11 +72,11 @@ namespace Hardcodet.Wpf.TaskbarNotification
         [Category(CategoryName)]
         public Popup TrayPopupResolved
         {
-            get { return (Popup) GetValue(TrayPopupResolvedProperty); }
+            get { return (Popup)GetValue(TrayPopupResolvedProperty); }
         }
 
         /// <summary>
-        /// Provides a secure method for setting the TrayPopupResolved property.  
+        /// Provides a secure method for setting the TrayPopupResolved property.
         /// This dependency property indicates ....
         /// </summary>
         /// <param name="value">The new value for the property.</param>
@@ -88,7 +85,7 @@ namespace Hardcodet.Wpf.TaskbarNotification
             SetValue(TrayPopupResolvedPropertyKey, value);
         }
 
-        #endregion
+        #endregion TrayPopupResolved
 
         #region TrayToolTipResolved
 
@@ -96,9 +93,8 @@ namespace Hardcodet.Wpf.TaskbarNotification
         /// TrayToolTipResolved Read-Only Dependency Property
         /// </summary>
         private static readonly DependencyPropertyKey TrayToolTipResolvedPropertyKey
-            = DependencyProperty.RegisterReadOnly("TrayToolTipResolved", typeof (ToolTip), typeof (TaskbarIcon),
+            = DependencyProperty.RegisterReadOnly("TrayToolTipResolved", typeof(ToolTip), typeof(TaskbarIcon),
                 new FrameworkPropertyMetadata(null));
-
 
         /// <summary>
         /// A read-only dependency property that returns the <see cref="ToolTip"/>
@@ -108,7 +104,7 @@ namespace Hardcodet.Wpf.TaskbarNotification
             = TrayToolTipResolvedPropertyKey.DependencyProperty;
 
         /// <summary>
-        /// Gets the TrayToolTipResolved property. Returns 
+        /// Gets the TrayToolTipResolved property. Returns
         /// a <see cref="ToolTip"/> control that was created
         /// in order to display either <see cref="TrayToolTip"/>
         /// or <see cref="ToolTipText"/>.
@@ -118,12 +114,12 @@ namespace Hardcodet.Wpf.TaskbarNotification
         [Bindable(true)]
         public ToolTip TrayToolTipResolved
         {
-            get { return (ToolTip) GetValue(TrayToolTipResolvedProperty); }
+            get { return (ToolTip)GetValue(TrayToolTipResolvedProperty); }
         }
 
         /// <summary>
         /// Provides a secure method for setting the <see cref="TrayToolTipResolved"/>
-        /// property.  
+        /// property.
         /// </summary>
         /// <param name="value">The new value for the property.</param>
         protected void SetTrayToolTipResolved(ToolTip value)
@@ -131,7 +127,7 @@ namespace Hardcodet.Wpf.TaskbarNotification
             SetValue(TrayToolTipResolvedPropertyKey, value);
         }
 
-        #endregion
+        #endregion TrayToolTipResolved
 
         #region CustomBalloon
 
@@ -139,7 +135,7 @@ namespace Hardcodet.Wpf.TaskbarNotification
         /// CustomBalloon Read-Only Dependency Property
         /// </summary>
         private static readonly DependencyPropertyKey CustomBalloonPropertyKey
-            = DependencyProperty.RegisterReadOnly("CustomBalloon", typeof (Popup), typeof (TaskbarIcon),
+            = DependencyProperty.RegisterReadOnly("CustomBalloon", typeof(Popup), typeof(TaskbarIcon),
                 new FrameworkPropertyMetadata(null));
 
         /// <summary>
@@ -154,11 +150,11 @@ namespace Hardcodet.Wpf.TaskbarNotification
         /// </summary>
         public Popup CustomBalloon
         {
-            get { return (Popup) GetValue(CustomBalloonProperty); }
+            get { return (Popup)GetValue(CustomBalloonProperty); }
         }
 
         /// <summary>
-        /// Provides a secure method for setting the <see cref="CustomBalloon"/> property.  
+        /// Provides a secure method for setting the <see cref="CustomBalloon"/> property.
         /// </summary>
         /// <param name="value">The new value for the property.</param>
         protected void SetCustomBalloon(Popup value)
@@ -166,7 +162,7 @@ namespace Hardcodet.Wpf.TaskbarNotification
             SetValue(CustomBalloonPropertyKey, value);
         }
 
-        #endregion
+        #endregion CustomBalloon
 
         //DEPENDENCY PROPERTIES
 
@@ -193,14 +189,13 @@ namespace Hardcodet.Wpf.TaskbarNotification
             }
         }
 
-
         /// <summary>
         /// Resolves an image source and updates the <see cref="Icon" /> property accordingly.
         /// </summary>
         public static readonly DependencyProperty IconSourceProperty =
             DependencyProperty.Register("IconSource",
-                typeof (ImageSource),
-                typeof (TaskbarIcon),
+                typeof(ImageSource),
+                typeof(TaskbarIcon),
                 new FrameworkPropertyMetadata(null, IconSourcePropertyChanged));
 
         /// <summary>
@@ -212,10 +207,9 @@ namespace Hardcodet.Wpf.TaskbarNotification
         [Description("Sets the displayed taskbar icon.")]
         public ImageSource IconSource
         {
-            get { return (ImageSource) GetValue(IconSourceProperty); }
+            get { return (ImageSource)GetValue(IconSourceProperty); }
             set { SetValue(IconSourceProperty, value); }
         }
-
 
         /// <summary>
         /// A static callback listener which is being invoked if the
@@ -227,10 +221,9 @@ namespace Hardcodet.Wpf.TaskbarNotification
         /// <param name="e">Provides information about the updated property.</param>
         private static void IconSourcePropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            TaskbarIcon owner = (TaskbarIcon) d;
+            TaskbarIcon owner = (TaskbarIcon)d;
             owner.OnIconSourcePropertyChanged(e);
         }
-
 
         /// <summary>
         /// Handles changes of the <see cref="IconSourceProperty"/> dependency property. As
@@ -241,13 +234,13 @@ namespace Hardcodet.Wpf.TaskbarNotification
         /// <param name="e">Provides information about the updated property.</param>
         private void OnIconSourcePropertyChanged(DependencyPropertyChangedEventArgs e)
         {
-            ImageSource newValue = (ImageSource) e.NewValue;
+            ImageSource newValue = (ImageSource)e.NewValue;
 
             //resolving the ImageSource at design time is unlikely to work
             if (!Util.IsDesignMode) Icon = newValue.ToIcon();
         }
 
-        #endregion
+        #endregion Icon property / IconSource dependency property
 
         #region ToolTipText dependency property
 
@@ -257,10 +250,9 @@ namespace Hardcodet.Wpf.TaskbarNotification
         /// </summary>
         public static readonly DependencyProperty ToolTipTextProperty =
             DependencyProperty.Register("ToolTipText",
-                typeof (string),
-                typeof (TaskbarIcon),
+                typeof(string),
+                typeof(TaskbarIcon),
                 new FrameworkPropertyMetadata(String.Empty, ToolTipTextPropertyChanged));
-
 
         /// <summary>
         /// A property wrapper for the <see cref="ToolTipTextProperty"/>
@@ -272,10 +264,9 @@ namespace Hardcodet.Wpf.TaskbarNotification
         [Description("Alternative to a fully blown ToolTip, which is only displayed on Vista and above.")]
         public string ToolTipText
         {
-            get { return (string) GetValue(ToolTipTextProperty); }
+            get { return (string)GetValue(ToolTipTextProperty); }
             set { SetValue(ToolTipTextProperty, value); }
         }
-
 
         /// <summary>
         /// A static callback listener which is being invoked if the
@@ -287,10 +278,9 @@ namespace Hardcodet.Wpf.TaskbarNotification
         /// <param name="e">Provides information about the updated property.</param>
         private static void ToolTipTextPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            TaskbarIcon owner = (TaskbarIcon) d;
+            TaskbarIcon owner = (TaskbarIcon)d;
             owner.OnToolTipTextPropertyChanged(e);
         }
-
 
         /// <summary>
         /// Handles changes of the <see cref="ToolTipTextProperty"/> dependency property. As
@@ -320,7 +310,7 @@ namespace Hardcodet.Wpf.TaskbarNotification
             WriteToolTipSettings();
         }
 
-        #endregion
+        #endregion ToolTipText dependency property
 
         #region TrayToolTip dependency property
 
@@ -331,8 +321,8 @@ namespace Hardcodet.Wpf.TaskbarNotification
         /// </summary>
         public static readonly DependencyProperty TrayToolTipProperty =
             DependencyProperty.Register("TrayToolTip",
-                typeof (UIElement),
-                typeof (TaskbarIcon),
+                typeof(UIElement),
+                typeof(TaskbarIcon),
                 new FrameworkPropertyMetadata(null, TrayToolTipPropertyChanged));
 
         /// <summary>
@@ -346,10 +336,9 @@ namespace Hardcodet.Wpf.TaskbarNotification
         [Description("Custom UI element that is displayed as a tooltip. Only on Vista and above")]
         public UIElement TrayToolTip
         {
-            get { return (UIElement) GetValue(TrayToolTipProperty); }
+            get { return (UIElement)GetValue(TrayToolTipProperty); }
             set { SetValue(TrayToolTipProperty, value); }
         }
-
 
         /// <summary>
         /// A static callback listener which is being invoked if the
@@ -361,10 +350,9 @@ namespace Hardcodet.Wpf.TaskbarNotification
         /// <param name="e">Provides information about the updated property.</param>
         private static void TrayToolTipPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            TaskbarIcon owner = (TaskbarIcon) d;
+            TaskbarIcon owner = (TaskbarIcon)d;
             owner.OnTrayToolTipPropertyChanged(e);
         }
-
 
         /// <summary>
         /// Handles changes of the <see cref="TrayToolTipProperty"/> dependency property. As
@@ -381,13 +369,13 @@ namespace Hardcodet.Wpf.TaskbarNotification
             if (e.OldValue != null)
             {
                 //remove the taskbar icon reference from the previously used element
-                SetParentTaskbarIcon((DependencyObject) e.OldValue, null);
+                SetParentTaskbarIcon((DependencyObject)e.OldValue, null);
             }
 
             if (e.NewValue != null)
             {
                 //set this taskbar icon as a reference to the new tooltip element
-                SetParentTaskbarIcon((DependencyObject) e.NewValue, this);
+                SetParentTaskbarIcon((DependencyObject)e.NewValue, this);
             }
 
             //update tooltip settings - needed to make sure a string is set, even
@@ -396,7 +384,7 @@ namespace Hardcodet.Wpf.TaskbarNotification
             WriteToolTipSettings();
         }
 
-        #endregion
+        #endregion TrayToolTip dependency property
 
         #region TrayPopup dependency property
 
@@ -405,8 +393,8 @@ namespace Hardcodet.Wpf.TaskbarNotification
         /// </summary>
         public static readonly DependencyProperty TrayPopupProperty =
             DependencyProperty.Register("TrayPopup",
-                typeof (UIElement),
-                typeof (TaskbarIcon),
+                typeof(UIElement),
+                typeof(TaskbarIcon),
                 new FrameworkPropertyMetadata(null, TrayPopupPropertyChanged));
 
         /// <summary>
@@ -418,10 +406,9 @@ namespace Hardcodet.Wpf.TaskbarNotification
         [Description("Displayed as a Popup if the user clicks on the taskbar icon.")]
         public UIElement TrayPopup
         {
-            get { return (UIElement) GetValue(TrayPopupProperty); }
+            get { return (UIElement)GetValue(TrayPopupProperty); }
             set { SetValue(TrayPopupProperty, value); }
         }
-
 
         /// <summary>
         /// A static callback listener which is being invoked if the
@@ -433,10 +420,9 @@ namespace Hardcodet.Wpf.TaskbarNotification
         /// <param name="e">Provides information about the updated property.</param>
         private static void TrayPopupPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            TaskbarIcon owner = (TaskbarIcon) d;
+            TaskbarIcon owner = (TaskbarIcon)d;
             owner.OnTrayPopupPropertyChanged(e);
         }
-
 
         /// <summary>
         /// Handles changes of the <see cref="TrayPopupProperty"/> dependency property. As
@@ -450,21 +436,20 @@ namespace Hardcodet.Wpf.TaskbarNotification
             if (e.OldValue != null)
             {
                 //remove the taskbar icon reference from the previously used element
-                SetParentTaskbarIcon((DependencyObject) e.OldValue, null);
+                SetParentTaskbarIcon((DependencyObject)e.OldValue, null);
             }
-
 
             if (e.NewValue != null)
             {
                 //set this taskbar icon as a reference to the new tooltip element
-                SetParentTaskbarIcon((DependencyObject) e.NewValue, this);
+                SetParentTaskbarIcon((DependencyObject)e.NewValue, this);
             }
 
             //create a pop
             CreatePopup();
         }
 
-        #endregion
+        #endregion TrayPopup dependency property
 
         #region MenuActivation dependency property
 
@@ -474,8 +459,8 @@ namespace Hardcodet.Wpf.TaskbarNotification
         /// </summary>
         public static readonly DependencyProperty MenuActivationProperty =
             DependencyProperty.Register("MenuActivation",
-                typeof (PopupActivationMode),
-                typeof (TaskbarIcon),
+                typeof(PopupActivationMode),
+                typeof(TaskbarIcon),
                 new FrameworkPropertyMetadata(PopupActivationMode.RightClick));
 
         /// <summary>
@@ -488,11 +473,11 @@ namespace Hardcodet.Wpf.TaskbarNotification
         [Description("Defines what mouse events display the context menu.")]
         public PopupActivationMode MenuActivation
         {
-            get { return (PopupActivationMode) GetValue(MenuActivationProperty); }
+            get { return (PopupActivationMode)GetValue(MenuActivationProperty); }
             set { SetValue(MenuActivationProperty, value); }
         }
 
-        #endregion
+        #endregion MenuActivation dependency property
 
         #region PopupActivation dependency property
 
@@ -502,8 +487,8 @@ namespace Hardcodet.Wpf.TaskbarNotification
         /// </summary>
         public static readonly DependencyProperty PopupActivationProperty =
             DependencyProperty.Register("PopupActivation",
-                typeof (PopupActivationMode),
-                typeof (TaskbarIcon),
+                typeof(PopupActivationMode),
+                typeof(TaskbarIcon),
                 new FrameworkPropertyMetadata(PopupActivationMode.LeftClick));
 
         /// <summary>
@@ -516,11 +501,11 @@ namespace Hardcodet.Wpf.TaskbarNotification
         [Description("Defines what mouse events display the TaskbarIconPopup.")]
         public PopupActivationMode PopupActivation
         {
-            get { return (PopupActivationMode) GetValue(PopupActivationProperty); }
+            get { return (PopupActivationMode)GetValue(PopupActivationProperty); }
             set { SetValue(PopupActivationProperty, value); }
         }
 
-        #endregion
+        #endregion PopupActivation dependency property
 
         #region Visibility dependency property override
 
@@ -534,10 +519,9 @@ namespace Hardcodet.Wpf.TaskbarNotification
         /// <param name="e">Provides information about the updated property.</param>
         private static void VisibilityPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            TaskbarIcon owner = (TaskbarIcon) d;
+            TaskbarIcon owner = (TaskbarIcon)d;
             owner.OnVisibilityPropertyChanged(e);
         }
-
 
         /// <summary>
         /// Handles changes of the <see cref="UIElement.VisibilityProperty"/> dependency property. As
@@ -548,7 +532,7 @@ namespace Hardcodet.Wpf.TaskbarNotification
         /// <param name="e">Provides information about the updated property.</param>
         private void OnVisibilityPropertyChanged(DependencyPropertyChangedEventArgs e)
         {
-            Visibility newValue = (Visibility) e.NewValue;
+            Visibility newValue = (Visibility)e.NewValue;
 
             //update
             if (newValue == Visibility.Visible)
@@ -561,7 +545,7 @@ namespace Hardcodet.Wpf.TaskbarNotification
             }
         }
 
-        #endregion
+        #endregion Visibility dependency property override
 
         #region DataContext dependency property override / target update
 
@@ -598,10 +582,9 @@ namespace Hardcodet.Wpf.TaskbarNotification
         /// <param name="e">Provides information about the updated property.</param>
         private static void DataContextPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            TaskbarIcon owner = (TaskbarIcon) d;
+            TaskbarIcon owner = (TaskbarIcon)d;
             owner.OnDataContextPropertyChanged(e);
         }
-
 
         /// <summary>
         /// Handles changes of the <see cref="FrameworkElement.DataContextProperty"/> dependency property. As
@@ -622,7 +605,7 @@ namespace Hardcodet.Wpf.TaskbarNotification
             UpdateDataContext(ContextMenu, oldValue, newValue);
         }
 
-        #endregion
+        #endregion DataContext dependency property override / target update
 
         #region ContextMenu dependency property override
 
@@ -636,10 +619,9 @@ namespace Hardcodet.Wpf.TaskbarNotification
         /// <param name="e">Provides information about the updated property.</param>
         private static void ContextMenuPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            TaskbarIcon owner = (TaskbarIcon) d;
+            TaskbarIcon owner = (TaskbarIcon)d;
             owner.OnContextMenuPropertyChanged(e);
         }
-
 
         /// <summary>
         /// Releases the old and updates the new <see cref="ContextMenu"/> property
@@ -652,19 +634,19 @@ namespace Hardcodet.Wpf.TaskbarNotification
             if (e.OldValue != null)
             {
                 //remove the taskbar icon reference from the previously used element
-                SetParentTaskbarIcon((DependencyObject) e.OldValue, null);
+                SetParentTaskbarIcon((DependencyObject)e.OldValue, null);
             }
 
             if (e.NewValue != null)
             {
                 //set this taskbar icon as a reference to the new tooltip element
-                SetParentTaskbarIcon((DependencyObject) e.NewValue, this);
+                SetParentTaskbarIcon((DependencyObject)e.NewValue, this);
             }
 
-            UpdateDataContext((ContextMenu) e.NewValue, null, DataContext);
+            UpdateDataContext((ContextMenu)e.NewValue, null, DataContext);
         }
 
-        #endregion
+        #endregion ContextMenu dependency property override
 
         #region DoubleClickCommand dependency property
 
@@ -674,8 +656,8 @@ namespace Hardcodet.Wpf.TaskbarNotification
         /// </summary>
         public static readonly DependencyProperty DoubleClickCommandProperty =
             DependencyProperty.Register("DoubleClickCommand",
-                typeof (ICommand),
-                typeof (TaskbarIcon),
+                typeof(ICommand),
+                typeof(TaskbarIcon),
                 new FrameworkPropertyMetadata(null));
 
         /// <summary>
@@ -688,11 +670,11 @@ namespace Hardcodet.Wpf.TaskbarNotification
         [Description("A command that is being executed if the tray icon is being double-clicked.")]
         public ICommand DoubleClickCommand
         {
-            get { return (ICommand) GetValue(DoubleClickCommandProperty); }
+            get { return (ICommand)GetValue(DoubleClickCommandProperty); }
             set { SetValue(DoubleClickCommandProperty, value); }
         }
 
-        #endregion
+        #endregion DoubleClickCommand dependency property
 
         #region DoubleClickCommandParameter dependency property
 
@@ -701,8 +683,8 @@ namespace Hardcodet.Wpf.TaskbarNotification
         /// </summary>
         public static readonly DependencyProperty DoubleClickCommandParameterProperty =
             DependencyProperty.Register("DoubleClickCommandParameter",
-                typeof (object),
-                typeof (TaskbarIcon),
+                typeof(object),
+                typeof(TaskbarIcon),
                 new FrameworkPropertyMetadata(null));
 
         /// <summary>
@@ -718,7 +700,7 @@ namespace Hardcodet.Wpf.TaskbarNotification
             set { SetValue(DoubleClickCommandParameterProperty, value); }
         }
 
-        #endregion
+        #endregion DoubleClickCommandParameter dependency property
 
         #region DoubleClickCommandTarget dependency property
 
@@ -727,8 +709,8 @@ namespace Hardcodet.Wpf.TaskbarNotification
         /// </summary>
         public static readonly DependencyProperty DoubleClickCommandTargetProperty =
             DependencyProperty.Register("DoubleClickCommandTarget",
-                typeof (IInputElement),
-                typeof (TaskbarIcon),
+                typeof(IInputElement),
+                typeof(TaskbarIcon),
                 new FrameworkPropertyMetadata(null));
 
         /// <summary>
@@ -740,11 +722,11 @@ namespace Hardcodet.Wpf.TaskbarNotification
         [Description("The target of the command that is fired if the notify icon is double clicked.")]
         public IInputElement DoubleClickCommandTarget
         {
-            get { return (IInputElement) GetValue(DoubleClickCommandTargetProperty); }
+            get { return (IInputElement)GetValue(DoubleClickCommandTargetProperty); }
             set { SetValue(DoubleClickCommandTargetProperty, value); }
         }
 
-        #endregion
+        #endregion DoubleClickCommandTarget dependency property
 
         #region LeftClickCommand dependency property
 
@@ -754,8 +736,8 @@ namespace Hardcodet.Wpf.TaskbarNotification
         /// </summary>
         public static readonly DependencyProperty LeftClickCommandProperty =
             DependencyProperty.Register("LeftClickCommand",
-                typeof (ICommand),
-                typeof (TaskbarIcon),
+                typeof(ICommand),
+                typeof(TaskbarIcon),
                 new FrameworkPropertyMetadata(null));
 
         /// <summary>
@@ -768,11 +750,11 @@ namespace Hardcodet.Wpf.TaskbarNotification
         [Description("A command that is being executed if the tray icon is being left-clicked.")]
         public ICommand LeftClickCommand
         {
-            get { return (ICommand) GetValue(LeftClickCommandProperty); }
+            get { return (ICommand)GetValue(LeftClickCommandProperty); }
             set { SetValue(LeftClickCommandProperty, value); }
         }
 
-        #endregion
+        #endregion LeftClickCommand dependency property
 
         #region LeftClickCommandParameter dependency property
 
@@ -781,8 +763,8 @@ namespace Hardcodet.Wpf.TaskbarNotification
         /// </summary>
         public static readonly DependencyProperty LeftClickCommandParameterProperty =
             DependencyProperty.Register("LeftClickCommandParameter",
-                typeof (object),
-                typeof (TaskbarIcon),
+                typeof(object),
+                typeof(TaskbarIcon),
                 new FrameworkPropertyMetadata(null));
 
         /// <summary>
@@ -799,7 +781,7 @@ namespace Hardcodet.Wpf.TaskbarNotification
             set { SetValue(LeftClickCommandParameterProperty, value); }
         }
 
-        #endregion
+        #endregion LeftClickCommandParameter dependency property
 
         #region LeftClickCommandTarget dependency property
 
@@ -808,8 +790,8 @@ namespace Hardcodet.Wpf.TaskbarNotification
         /// </summary>
         public static readonly DependencyProperty LeftClickCommandTargetProperty =
             DependencyProperty.Register("LeftClickCommandTarget",
-                typeof (IInputElement),
-                typeof (TaskbarIcon),
+                typeof(IInputElement),
+                typeof(TaskbarIcon),
                 new FrameworkPropertyMetadata(null));
 
         /// <summary>
@@ -822,11 +804,11 @@ namespace Hardcodet.Wpf.TaskbarNotification
             )]
         public IInputElement LeftClickCommandTarget
         {
-            get { return (IInputElement) GetValue(LeftClickCommandTargetProperty); }
+            get { return (IInputElement)GetValue(LeftClickCommandTargetProperty); }
             set { SetValue(LeftClickCommandTargetProperty, value); }
         }
 
-        #endregion
+        #endregion LeftClickCommandTarget dependency property
 
         //EVENTS
 
@@ -837,7 +819,7 @@ namespace Hardcodet.Wpf.TaskbarNotification
         /// </summary>
         public static readonly RoutedEvent TrayLeftMouseDownEvent = EventManager.RegisterRoutedEvent(
             "TrayLeftMouseDown",
-            RoutingStrategy.Bubble, typeof (RoutedEventHandler), typeof (TaskbarIcon));
+            RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(TaskbarIcon));
 
         /// <summary>
         /// Occurs when the user presses the left mouse button.
@@ -872,7 +854,7 @@ namespace Hardcodet.Wpf.TaskbarNotification
             return args;
         }
 
-        #endregion
+        #endregion TrayLeftMouseDown
 
         #region TrayRightMouseDown
 
@@ -881,7 +863,7 @@ namespace Hardcodet.Wpf.TaskbarNotification
         /// </summary>
         public static readonly RoutedEvent TrayRightMouseDownEvent =
             EventManager.RegisterRoutedEvent("TrayRightMouseDown",
-                RoutingStrategy.Bubble, typeof (RoutedEventHandler), typeof (TaskbarIcon));
+                RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(TaskbarIcon));
 
         /// <summary>
         /// Occurs when the presses the right mouse button.
@@ -914,7 +896,7 @@ namespace Hardcodet.Wpf.TaskbarNotification
             return args;
         }
 
-        #endregion
+        #endregion TrayRightMouseDown
 
         #region TrayMiddleMouseDown
 
@@ -923,7 +905,7 @@ namespace Hardcodet.Wpf.TaskbarNotification
         /// </summary>
         public static readonly RoutedEvent TrayMiddleMouseDownEvent =
             EventManager.RegisterRoutedEvent("TrayMiddleMouseDown",
-                RoutingStrategy.Bubble, typeof (RoutedEventHandler), typeof (TaskbarIcon));
+                RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(TaskbarIcon));
 
         /// <summary>
         /// Occurs when the user presses the middle mouse button.
@@ -956,7 +938,7 @@ namespace Hardcodet.Wpf.TaskbarNotification
             return args;
         }
 
-        #endregion
+        #endregion TrayMiddleMouseDown
 
         #region TrayLeftMouseUp
 
@@ -964,7 +946,7 @@ namespace Hardcodet.Wpf.TaskbarNotification
         /// TrayLeftMouseUp Routed Event
         /// </summary>
         public static readonly RoutedEvent TrayLeftMouseUpEvent = EventManager.RegisterRoutedEvent("TrayLeftMouseUp",
-            RoutingStrategy.Bubble, typeof (RoutedEventHandler), typeof (TaskbarIcon));
+            RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(TaskbarIcon));
 
         /// <summary>
         /// Occurs when the user releases the left mouse button.
@@ -997,7 +979,7 @@ namespace Hardcodet.Wpf.TaskbarNotification
             return args;
         }
 
-        #endregion
+        #endregion TrayLeftMouseUp
 
         #region TrayRightMouseUp
 
@@ -1005,7 +987,7 @@ namespace Hardcodet.Wpf.TaskbarNotification
         /// TrayRightMouseUp Routed Event
         /// </summary>
         public static readonly RoutedEvent TrayRightMouseUpEvent = EventManager.RegisterRoutedEvent("TrayRightMouseUp",
-            RoutingStrategy.Bubble, typeof (RoutedEventHandler), typeof (TaskbarIcon));
+            RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(TaskbarIcon));
 
         /// <summary>
         /// Occurs when the user releases the right mouse button.
@@ -1038,7 +1020,7 @@ namespace Hardcodet.Wpf.TaskbarNotification
             return args;
         }
 
-        #endregion
+        #endregion TrayRightMouseUp
 
         #region TrayMiddleMouseUp
 
@@ -1047,7 +1029,7 @@ namespace Hardcodet.Wpf.TaskbarNotification
         /// </summary>
         public static readonly RoutedEvent TrayMiddleMouseUpEvent = EventManager.RegisterRoutedEvent(
             "TrayMiddleMouseUp",
-            RoutingStrategy.Bubble, typeof (RoutedEventHandler), typeof (TaskbarIcon));
+            RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(TaskbarIcon));
 
         /// <summary>
         /// Occurs when the user releases the middle mouse button.
@@ -1080,7 +1062,7 @@ namespace Hardcodet.Wpf.TaskbarNotification
             return args;
         }
 
-        #endregion
+        #endregion TrayMiddleMouseUp
 
         #region TrayMouseDoubleClick
 
@@ -1089,7 +1071,7 @@ namespace Hardcodet.Wpf.TaskbarNotification
         /// </summary>
         public static readonly RoutedEvent TrayMouseDoubleClickEvent =
             EventManager.RegisterRoutedEvent("TrayMouseDoubleClick",
-                RoutingStrategy.Bubble, typeof (RoutedEventHandler), typeof (TaskbarIcon));
+                RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(TaskbarIcon));
 
         /// <summary>
         /// Occurs when the user double-clicks the taskbar icon.
@@ -1124,7 +1106,7 @@ namespace Hardcodet.Wpf.TaskbarNotification
             return args;
         }
 
-        #endregion
+        #endregion TrayMouseDoubleClick
 
         #region TrayMouseMove
 
@@ -1132,7 +1114,7 @@ namespace Hardcodet.Wpf.TaskbarNotification
         /// TrayMouseMove Routed Event
         /// </summary>
         public static readonly RoutedEvent TrayMouseMoveEvent = EventManager.RegisterRoutedEvent("TrayMouseMove",
-            RoutingStrategy.Bubble, typeof (RoutedEventHandler), typeof (TaskbarIcon));
+            RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(TaskbarIcon));
 
         /// <summary>
         /// Occurs when the user moves the mouse over the taskbar icon.
@@ -1165,7 +1147,7 @@ namespace Hardcodet.Wpf.TaskbarNotification
             return args;
         }
 
-        #endregion
+        #endregion TrayMouseMove
 
         #region TrayBalloonTipShown
 
@@ -1174,7 +1156,7 @@ namespace Hardcodet.Wpf.TaskbarNotification
         /// </summary>
         public static readonly RoutedEvent TrayBalloonTipShownEvent =
             EventManager.RegisterRoutedEvent("TrayBalloonTipShown",
-                RoutingStrategy.Bubble, typeof (RoutedEventHandler), typeof (TaskbarIcon));
+                RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(TaskbarIcon));
 
         /// <summary>
         /// Occurs when a balloon ToolTip is displayed.
@@ -1207,7 +1189,7 @@ namespace Hardcodet.Wpf.TaskbarNotification
             return args;
         }
 
-        #endregion
+        #endregion TrayBalloonTipShown
 
         #region TrayBalloonTipClosed
 
@@ -1216,7 +1198,7 @@ namespace Hardcodet.Wpf.TaskbarNotification
         /// </summary>
         public static readonly RoutedEvent TrayBalloonTipClosedEvent =
             EventManager.RegisterRoutedEvent("TrayBalloonTipClosed",
-                RoutingStrategy.Bubble, typeof (RoutedEventHandler), typeof (TaskbarIcon));
+                RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(TaskbarIcon));
 
         /// <summary>
         /// Occurs when a balloon ToolTip was closed.
@@ -1249,7 +1231,7 @@ namespace Hardcodet.Wpf.TaskbarNotification
             return args;
         }
 
-        #endregion
+        #endregion TrayBalloonTipClosed
 
         #region TrayBalloonTipClicked
 
@@ -1258,7 +1240,7 @@ namespace Hardcodet.Wpf.TaskbarNotification
         /// </summary>
         public static readonly RoutedEvent TrayBalloonTipClickedEvent =
             EventManager.RegisterRoutedEvent("TrayBalloonTipClicked",
-                RoutingStrategy.Bubble, typeof (RoutedEventHandler), typeof (TaskbarIcon));
+                RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(TaskbarIcon));
 
         /// <summary>
         /// Occurs when the user clicks on a balloon ToolTip.
@@ -1291,7 +1273,7 @@ namespace Hardcodet.Wpf.TaskbarNotification
             return args;
         }
 
-        #endregion
+        #endregion TrayBalloonTipClicked
 
         #region TrayContextMenuOpen (and PreviewTrayContextMenuOpen)
 
@@ -1300,7 +1282,7 @@ namespace Hardcodet.Wpf.TaskbarNotification
         /// </summary>
         public static readonly RoutedEvent TrayContextMenuOpenEvent =
             EventManager.RegisterRoutedEvent("TrayContextMenuOpen",
-                RoutingStrategy.Bubble, typeof (RoutedEventHandler), typeof (TaskbarIcon));
+                RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(TaskbarIcon));
 
         /// <summary>
         /// Bubbled event that occurs when the context menu of the taskbar icon is being displayed.
@@ -1338,7 +1320,7 @@ namespace Hardcodet.Wpf.TaskbarNotification
         /// </summary>
         public static readonly RoutedEvent PreviewTrayContextMenuOpenEvent =
             EventManager.RegisterRoutedEvent("PreviewTrayContextMenuOpen",
-                RoutingStrategy.Tunnel, typeof (RoutedEventHandler), typeof (TaskbarIcon));
+                RoutingStrategy.Tunnel, typeof(RoutedEventHandler), typeof(TaskbarIcon));
 
         /// <summary>
         /// Tunneled event that occurs when the context menu of the taskbar icon is being displayed.
@@ -1371,7 +1353,7 @@ namespace Hardcodet.Wpf.TaskbarNotification
             return args;
         }
 
-        #endregion
+        #endregion TrayContextMenuOpen (and PreviewTrayContextMenuOpen)
 
         #region TrayPopupOpen (and PreviewTrayPopupOpen)
 
@@ -1379,7 +1361,7 @@ namespace Hardcodet.Wpf.TaskbarNotification
         /// TrayPopupOpen Routed Event
         /// </summary>
         public static readonly RoutedEvent TrayPopupOpenEvent = EventManager.RegisterRoutedEvent("TrayPopupOpen",
-            RoutingStrategy.Bubble, typeof (RoutedEventHandler), typeof (TaskbarIcon));
+            RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(TaskbarIcon));
 
         /// <summary>
         /// Bubbled event that occurs when the custom popup is being opened.
@@ -1417,7 +1399,7 @@ namespace Hardcodet.Wpf.TaskbarNotification
         /// </summary>
         public static readonly RoutedEvent PreviewTrayPopupOpenEvent =
             EventManager.RegisterRoutedEvent("PreviewTrayPopupOpen",
-                RoutingStrategy.Tunnel, typeof (RoutedEventHandler), typeof (TaskbarIcon));
+                RoutingStrategy.Tunnel, typeof(RoutedEventHandler), typeof(TaskbarIcon));
 
         /// <summary>
         /// Tunneled event that occurs when the custom popup is being opened.
@@ -1450,7 +1432,7 @@ namespace Hardcodet.Wpf.TaskbarNotification
             return args;
         }
 
-        #endregion
+        #endregion TrayPopupOpen (and PreviewTrayPopupOpen)
 
         #region TrayToolTipOpen (and PreviewTrayToolTipOpen)
 
@@ -1458,7 +1440,7 @@ namespace Hardcodet.Wpf.TaskbarNotification
         /// TrayToolTipOpen Routed Event
         /// </summary>
         public static readonly RoutedEvent TrayToolTipOpenEvent = EventManager.RegisterRoutedEvent("TrayToolTipOpen",
-            RoutingStrategy.Bubble, typeof (RoutedEventHandler), typeof (TaskbarIcon));
+            RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(TaskbarIcon));
 
         /// <summary>
         /// Bubbled event that occurs when the custom ToolTip is being displayed.
@@ -1496,7 +1478,7 @@ namespace Hardcodet.Wpf.TaskbarNotification
         /// </summary>
         public static readonly RoutedEvent PreviewTrayToolTipOpenEvent =
             EventManager.RegisterRoutedEvent("PreviewTrayToolTipOpen",
-                RoutingStrategy.Tunnel, typeof (RoutedEventHandler), typeof (TaskbarIcon));
+                RoutingStrategy.Tunnel, typeof(RoutedEventHandler), typeof(TaskbarIcon));
 
         /// <summary>
         /// Tunneled event that occurs when the custom ToolTip is being displayed.
@@ -1529,7 +1511,7 @@ namespace Hardcodet.Wpf.TaskbarNotification
             return args;
         }
 
-        #endregion
+        #endregion TrayToolTipOpen (and PreviewTrayToolTipOpen)
 
         #region TrayToolTipClose (and PreviewTrayToolTipClose)
 
@@ -1537,7 +1519,7 @@ namespace Hardcodet.Wpf.TaskbarNotification
         /// TrayToolTipClose Routed Event
         /// </summary>
         public static readonly RoutedEvent TrayToolTipCloseEvent = EventManager.RegisterRoutedEvent("TrayToolTipClose",
-            RoutingStrategy.Bubble, typeof (RoutedEventHandler), typeof (TaskbarIcon));
+            RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(TaskbarIcon));
 
         /// <summary>
         /// Bubbled event that occurs when a custom tooltip is being closed.
@@ -1575,7 +1557,7 @@ namespace Hardcodet.Wpf.TaskbarNotification
         /// </summary>
         public static readonly RoutedEvent PreviewTrayToolTipCloseEvent =
             EventManager.RegisterRoutedEvent("PreviewTrayToolTipClose",
-                RoutingStrategy.Tunnel, typeof (RoutedEventHandler), typeof (TaskbarIcon));
+                RoutingStrategy.Tunnel, typeof(RoutedEventHandler), typeof(TaskbarIcon));
 
         /// <summary>
         /// Tunneled event that occurs when a custom tooltip is being closed.
@@ -1608,7 +1590,7 @@ namespace Hardcodet.Wpf.TaskbarNotification
             return args;
         }
 
-        #endregion
+        #endregion TrayToolTipClose (and PreviewTrayToolTipClose)
 
         //ATTACHED EVENTS
 
@@ -1618,7 +1600,7 @@ namespace Hardcodet.Wpf.TaskbarNotification
         /// PopupOpened Attached Routed Event
         /// </summary>
         public static readonly RoutedEvent PopupOpenedEvent = EventManager.RegisterRoutedEvent("PopupOpened",
-            RoutingStrategy.Bubble, typeof (RoutedEventHandler), typeof (TaskbarIcon));
+            RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(TaskbarIcon));
 
         /// <summary>
         /// Adds a handler for the PopupOpened attached event
@@ -1654,7 +1636,7 @@ namespace Hardcodet.Wpf.TaskbarNotification
             return args;
         }
 
-        #endregion
+        #endregion PopupOpened
 
         #region ToolTipOpened
 
@@ -1662,7 +1644,7 @@ namespace Hardcodet.Wpf.TaskbarNotification
         /// ToolTipOpened Attached Routed Event
         /// </summary>
         public static readonly RoutedEvent ToolTipOpenedEvent = EventManager.RegisterRoutedEvent("ToolTipOpened",
-            RoutingStrategy.Bubble, typeof (RoutedEventHandler), typeof (TaskbarIcon));
+            RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(TaskbarIcon));
 
         /// <summary>
         /// Adds a handler for the ToolTipOpened attached event
@@ -1698,7 +1680,7 @@ namespace Hardcodet.Wpf.TaskbarNotification
             return args;
         }
 
-        #endregion
+        #endregion ToolTipOpened
 
         #region ToolTipClose
 
@@ -1706,7 +1688,7 @@ namespace Hardcodet.Wpf.TaskbarNotification
         /// ToolTipClose Attached Routed Event
         /// </summary>
         public static readonly RoutedEvent ToolTipCloseEvent = EventManager.RegisterRoutedEvent("ToolTipClose",
-            RoutingStrategy.Bubble, typeof (RoutedEventHandler), typeof (TaskbarIcon));
+            RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(TaskbarIcon));
 
         /// <summary>
         /// Adds a handler for the ToolTipClose attached event
@@ -1742,7 +1724,7 @@ namespace Hardcodet.Wpf.TaskbarNotification
             return args;
         }
 
-        #endregion
+        #endregion ToolTipClose
 
         #region BalloonShowing
 
@@ -1750,7 +1732,7 @@ namespace Hardcodet.Wpf.TaskbarNotification
         /// BalloonShowing Attached Routed Event
         /// </summary>
         public static readonly RoutedEvent BalloonShowingEvent = EventManager.RegisterRoutedEvent("BalloonShowing",
-            RoutingStrategy.Bubble, typeof (RoutedEventHandler), typeof (TaskbarIcon));
+            RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(TaskbarIcon));
 
         /// <summary>
         /// Adds a handler for the BalloonShowing attached event
@@ -1786,7 +1768,7 @@ namespace Hardcodet.Wpf.TaskbarNotification
             return args;
         }
 
-        #endregion
+        #endregion BalloonShowing
 
         #region BalloonClosing
 
@@ -1794,7 +1776,7 @@ namespace Hardcodet.Wpf.TaskbarNotification
         /// BalloonClosing Attached Routed Event
         /// </summary>
         public static readonly RoutedEvent BalloonClosingEvent = EventManager.RegisterRoutedEvent("BalloonClosing",
-            RoutingStrategy.Bubble, typeof (RoutedEventHandler), typeof (TaskbarIcon));
+            RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(TaskbarIcon));
 
         /// <summary>
         /// Adds a handler for the BalloonClosing attached event
@@ -1830,7 +1812,7 @@ namespace Hardcodet.Wpf.TaskbarNotification
             return args;
         }
 
-        #endregion
+        #endregion BalloonClosing
 
         //ATTACHED PROPERTIES
 
@@ -1843,22 +1825,22 @@ namespace Hardcodet.Wpf.TaskbarNotification
         /// <code>
         /// <TextBlock Text="{Binding RelativeSource={RelativeSource Self}, Path=(tb:TaskbarIcon.ParentTaskbarIcon).ToolTipText}" />
         /// </code>
-        /// </summary>  
+        /// </summary>
         public static readonly DependencyProperty ParentTaskbarIconProperty =
-            DependencyProperty.RegisterAttached("ParentTaskbarIcon", typeof (TaskbarIcon), typeof (TaskbarIcon),
+            DependencyProperty.RegisterAttached("ParentTaskbarIcon", typeof(TaskbarIcon), typeof(TaskbarIcon),
                 new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.Inherits));
 
         /// <summary>
-        /// Gets the ParentTaskbarIcon property.  This dependency property 
+        /// Gets the ParentTaskbarIcon property.  This dependency property
         /// indicates ....
         /// </summary>
         public static TaskbarIcon GetParentTaskbarIcon(DependencyObject d)
         {
-            return (TaskbarIcon) d.GetValue(ParentTaskbarIconProperty);
+            return (TaskbarIcon)d.GetValue(ParentTaskbarIconProperty);
         }
 
         /// <summary>
-        /// Sets the ParentTaskbarIcon property.  This dependency property 
+        /// Sets the ParentTaskbarIcon property.  This dependency property
         /// indicates ....
         /// </summary>
         public static void SetParentTaskbarIcon(DependencyObject d, TaskbarIcon value)
@@ -1866,7 +1848,7 @@ namespace Hardcodet.Wpf.TaskbarNotification
             d.SetValue(ParentTaskbarIconProperty, value);
         }
 
-        #endregion
+        #endregion ParentTaskbarIcon
 
         //BASE CLASS PROPERTY OVERRIDES
 
@@ -1877,15 +1859,15 @@ namespace Hardcodet.Wpf.TaskbarNotification
         {
             //register change listener for the Visibility property
             var md = new PropertyMetadata(Visibility.Visible, VisibilityPropertyChanged);
-            VisibilityProperty.OverrideMetadata(typeof (TaskbarIcon), md);
+            VisibilityProperty.OverrideMetadata(typeof(TaskbarIcon), md);
 
             //register change listener for the DataContext property
             md = new FrameworkPropertyMetadata(new PropertyChangedCallback(DataContextPropertyChanged));
-            DataContextProperty.OverrideMetadata(typeof (TaskbarIcon), md);
+            DataContextProperty.OverrideMetadata(typeof(TaskbarIcon), md);
 
             //register change listener for the ContextMenu property
             md = new FrameworkPropertyMetadata(new PropertyChangedCallback(ContextMenuPropertyChanged));
-            ContextMenuProperty.OverrideMetadata(typeof (TaskbarIcon), md);
+            ContextMenuProperty.OverrideMetadata(typeof(TaskbarIcon), md);
         }
     }
 }

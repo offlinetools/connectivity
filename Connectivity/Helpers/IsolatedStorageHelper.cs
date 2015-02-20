@@ -2,6 +2,7 @@
 using System.IO.IsolatedStorage;
 using YamlDotNet.Core;
 using YamlDotNet.Serialization;
+
 namespace OfflineTools.Connectivity.Helpers
 {
     public static class IsolatedStorageHelper
@@ -22,6 +23,7 @@ namespace OfflineTools.Connectivity.Helpers
                 }
             }
         }
+
         internal static T Load<T>(string file)
         {
             using (var store = IsolatedStorageFile.GetUserStoreForApplication())
@@ -36,22 +38,26 @@ namespace OfflineTools.Connectivity.Helpers
                 }
             }
         }
+
         internal static void Delete(string file)
         {
             using (var store = IsolatedStorageFile.GetUserStoreForApplication())
                 if (Exists(file))
                     store.DeleteFile(file);
         }
+
         internal static bool Exists(string file)
         {
             using (var store = IsolatedStorageFile.GetUserStoreForApplication())
                 return store.FileExists(file);
         }
+
         public static void EnsureValid<T>(string file, T defaultThing)
         {
             if (!Exists(file) || IsCorrupt(file, defaultThing))
                 Save(file, defaultThing);
         }
+
         public static bool IsCorrupt<T>(string file, T defaultThing)
         {
             try

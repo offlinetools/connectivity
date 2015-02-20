@@ -81,6 +81,26 @@ namespace OfflineTools.Connectivity.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon disabled_triangle {
+            get {
+                object obj = ResourceManager.GetObject("disabled_triangle", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon hand {
+            get {
+                object obj = ResourceManager.GetObject("hand", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
         /// </summary>
         internal static System.IO.UnmanagedMemoryStream HeartbeatOff {
@@ -95,16 +115,6 @@ namespace OfflineTools.Connectivity.Properties {
         internal static System.IO.UnmanagedMemoryStream HeartbeatOn {
             get {
                 return ResourceManager.GetStream("HeartbeatOn", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
-        /// </summary>
-        internal static System.Drawing.Icon main {
-            get {
-                object obj = ResourceManager.GetObject("main", resourceCulture);
-                return ((System.Drawing.Icon)(obj));
             }
         }
         
@@ -153,6 +163,16 @@ namespace OfflineTools.Connectivity.Properties {
         internal static System.IO.UnmanagedMemoryStream TransitionOn {
             get {
                 return ResourceManager.GetStream("TransitionOn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon triangle {
+            get {
+                object obj = ResourceManager.GetObject("triangle", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
             }
         }
     }

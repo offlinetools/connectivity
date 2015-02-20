@@ -29,7 +29,7 @@ namespace Hardcodet.Wpf.TaskbarNotification
         }
 
         /// <summary>
-        /// A static helper method that adds a handler for a routed event 
+        /// A static helper method that adds a handler for a routed event
         /// to a target UIElement or ContentElement.
         /// </summary>
         /// <param name="element">UIElement or ContentElement that listens to the event</param>
@@ -53,7 +53,7 @@ namespace Hardcodet.Wpf.TaskbarNotification
         }
 
         /// <summary>
-        /// A static helper method that removes a handler for a routed event 
+        /// A static helper method that removes a handler for a routed event
         /// from a target UIElement or ContentElement.
         /// </summary>
         /// <param name="element">UIElement or ContentElement that listens to the event</param>
@@ -76,6 +76,6 @@ namespace Hardcodet.Wpf.TaskbarNotification
             }
         }
 
-        #endregion
+        #endregion RoutedEvent Helper Methods
     }
 }

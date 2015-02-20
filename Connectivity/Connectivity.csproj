@@ -55,7 +55,7 @@
     <StartupObject>OfflineTools.Connectivity.SingleInstanceManager</StartupObject>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>Resources\main.ico</ApplicationIcon>
+    <ApplicationIcon>Resources\triangle.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="FirstFloor.ModernUI, Version=1.0.6.0, Culture=neutral, PublicKeyToken=2d21ec3cd074c59a, processorArchitecture=MSIL">
@@ -89,7 +89,6 @@
   <ItemGroup>
     <Compile Include="App.cs" />
     <Compile Include="Helpers\IsolatedStorageHelper.cs" />
-    <Compile Include="NumberedTickBar.cs" />
     <Compile Include="Helpers\ConnectivityHelper.cs" />
     <Compile Include="Helpers\ConnectivityMonitor.cs" />
     <Compile Include="Enums.cs" />
@@ -185,7 +184,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\main.ico" />
+    <Resource Include="Resources\triangle.ico" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Minimize.ico" />
@@ -195,6 +194,15 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\cross triangle.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\disabled triangle.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\hand.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\hand white background.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

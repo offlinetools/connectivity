@@ -56,8 +56,8 @@ namespace Hardcodet.Wpf.TaskbarNotification.Interop
         /// the terminating NULL. For Version 5.0 and later, szTip can have a maximum of
         /// 128 characters, including the terminating NULL.
         /// </summary>
-        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 128)] public string ToolTipText;
-
+        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 128)]
+        public string ToolTipText;
 
         /// <summary>
         /// State of the icon. Remember to also set the <see cref="StateMask"/>.
@@ -76,7 +76,8 @@ namespace Hardcodet.Wpf.TaskbarNotification.Interop
         /// String with the text for a balloon ToolTip. It can have a maximum of 255 characters.
         /// To remove the ToolTip, set the NIF_INFO flag in uFlags and set szInfo to an empty string.
         /// </summary>
-        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 256)] public string BalloonText;
+        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 256)]
+        public string BalloonText;
 
         /// <summary>
         /// Mainly used to set the version when <see cref="WinApi.Shell_NotifyIcon"/> is invoked
@@ -89,7 +90,8 @@ namespace Hardcodet.Wpf.TaskbarNotification.Interop
         /// String containing a title for a balloon ToolTip. This title appears in boldface
         /// above the text. It can have a maximum of 63 characters.
         /// </summary>
-        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 64)] public string BalloonTitle;
+        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 64)]
+        public string BalloonTitle;
 
         /// <summary>
         /// Adds an icon to a balloon ToolTip, which is placed to the left of the title. If the
@@ -114,7 +116,6 @@ namespace Hardcodet.Wpf.TaskbarNotification.Interop
         /// </summary>
         public IntPtr CustomBalloonIconHandle;
 
-
         /// <summary>
         /// Creates a default data structure that provides
         /// a hidden taskbar icon without the icon being set.
@@ -128,7 +129,7 @@ namespace Hardcodet.Wpf.TaskbarNotification.Interop
             if (Environment.OSVersion.Version.Major >= 6)
             {
                 //use the current size
-                data.cbSize = (uint) Marshal.SizeOf(data);
+                data.cbSize = (uint)Marshal.SizeOf(data);
             }
             else
             {
@@ -143,7 +144,7 @@ namespace Hardcodet.Wpf.TaskbarNotification.Interop
             data.WindowHandle = handle;
             data.TaskbarIconId = 0x0;
             data.CallbackMessageId = WindowMessageSink.CallbackMessageId;
-            data.VersionOrTimeout = (uint) NotifyIconVersion.Win95;
+            data.VersionOrTimeout = (uint)NotifyIconVersion.Win95;
 
             data.IconHandle = IntPtr.Zero;
 

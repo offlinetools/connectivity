@@ -62,7 +62,7 @@ namespace Hardcodet.Wpf.TaskbarNotification.Interop
         /// in that case, regardless of whether the on-hover UI is showing,
         /// it can specify NIF_SHOWTIP to indicate the standard tooltip
         /// should still be shown.<br/>
-        /// Note that the NIF_SHOWTIP flag is effective until the next call 
+        /// Note that the NIF_SHOWTIP flag is effective until the next call
         /// to Shell_NotifyIcon.
         /// </summary>
         UseLegacyToolTips = 0x80

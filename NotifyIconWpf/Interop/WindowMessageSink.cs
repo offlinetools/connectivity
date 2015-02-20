@@ -6,10 +6,10 @@
 // modify it under the terms of the Code Project Open License (CPOL);
 // either version 1.0 of the License, or (at your option) any later
 // version.
-// 
+//
 // The above copyright notice and this permission notice shall be
 // included in all copies or substantial portions of the Software.
-// 
+//
 // THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
 // EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
 // OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
@@ -21,11 +21,9 @@
 //
 // THIS COPYRIGHT NOTICE MAY NOT BE REMOVED FROM THIS FILE
 
-
 using System;
 using System.ComponentModel;
 using System.Diagnostics;
-using System.Runtime.InteropServices;
 
 namespace Hardcodet.Wpf.TaskbarNotification.Interop
 {
@@ -71,7 +69,7 @@ namespace Hardcodet.Wpf.TaskbarNotification.Interop
 
         /// <summary>
         /// Handle for the message window.
-        /// </summary> 
+        /// </summary>
         internal IntPtr MessageWindowHandle { get; private set; }
 
         /// <summary>
@@ -80,7 +78,7 @@ namespace Hardcodet.Wpf.TaskbarNotification.Interop
         /// </summary>
         public NotifyIconVersion Version { get; set; }
 
-        #endregion
+        #endregion members
 
         #region events
 
@@ -107,7 +105,7 @@ namespace Hardcodet.Wpf.TaskbarNotification.Interop
         /// </summary>
         public event Action TaskbarCreated;
 
-        #endregion
+        #endregion events
 
         #region construction
 
@@ -122,11 +120,9 @@ namespace Hardcodet.Wpf.TaskbarNotification.Interop
             CreateMessageWindow();
         }
 
-
         private WindowMessageSink()
         {
         }
-
 
         /// <summary>
         /// Creates a dummy instance that provides an empty
@@ -143,7 +139,7 @@ namespace Hardcodet.Wpf.TaskbarNotification.Interop
             };
         }
 
-        #endregion
+        #endregion construction
 
         #region CreateMessageWindow
 
@@ -195,7 +191,7 @@ namespace Hardcodet.Wpf.TaskbarNotification.Interop
             }
         }
 
-        #endregion
+        #endregion CreateMessageWindow
 
         #region Handle Window Messages
 
@@ -216,7 +212,6 @@ namespace Hardcodet.Wpf.TaskbarNotification.Interop
             // Pass the message to the default window procedure
             return WinApi.DefWindowProc(hwnd, messageId, wparam, lparam);
         }
-
 
         /// <summary>
         /// Processes incoming system messages.
@@ -304,7 +299,7 @@ namespace Hardcodet.Wpf.TaskbarNotification.Interop
             }
         }
 
-        #endregion
+        #endregion Handle Window Messages
 
         #region Dispose
 
@@ -312,7 +307,6 @@ namespace Hardcodet.Wpf.TaskbarNotification.Interop
         /// Set to true as soon as <c>Dispose</c> has been invoked.
         /// </summary>
         public bool IsDisposed { get; private set; }
-
 
         /// <summary>
         /// Disposes the object.
@@ -326,7 +320,7 @@ namespace Hardcodet.Wpf.TaskbarNotification.Interop
 
             // This object will be cleaned up by the Dispose method.
             // Therefore, you should call GC.SupressFinalize to
-            // take this object off the finalization queue 
+            // take this object off the finalization queue
             // and prevent finalization code for this object
             // from executing a second time.
             GC.SuppressFinalize(this);
@@ -346,7 +340,6 @@ namespace Hardcodet.Wpf.TaskbarNotification.Interop
             Dispose(false);
         }
 
-
         /// <summary>
         /// Removes the windows hook that receives window
         /// messages and closes the underlying helper window.
@@ -362,6 +355,6 @@ namespace Hardcodet.Wpf.TaskbarNotification.Interop
             messageHandler = null;
         }
 
-        #endregion
+        #endregion Dispose
     }
 }
